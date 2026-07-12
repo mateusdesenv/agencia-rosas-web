@@ -64,6 +64,14 @@ const navItems = [
   ['Contato', '#contato'],
 ]
 
+const trustItems = ['Resposta em ate 24h', 'Plano focado em ROI', 'Acompanhamento proximo']
+
+const footerColumns = [
+  ['Servicos', [['Trafego Pago', '#servicos'], ['Social Media', '#servicos'], ['Sites de Conversao', '#servicos'], ['Automacao e CRM', '#servicos']]],
+  ['Resultados', [['Metricas', '#resultados'], ['Cases', '#cases'], ['Depoimentos', '#cases'], ['Proposta', '#contato']]],
+  ['Contato', [['WhatsApp', 'https://wa.me/5500000000000'], ['contato@roas.com.br', 'mailto:contato@roas.com.br'], ['Sao Paulo - SP', '#contato']]],
+]
+
 function ServiceIcon({ src, title }) {
   return (
     <span className="service-icon" aria-hidden="true">
@@ -141,6 +149,11 @@ function App() {
             <div className="hero-actions">
               <a className="btn btn-primary" href="#contato">Quero multiplicar meus resultados <span aria-hidden="true">→</span></a>
               <a className="btn btn-secondary" href="#cases">Ver cases <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="hero-trust" aria-label="Diferenciais da ROAS">
+              {trustItems.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
             </div>
           </div>
         </div>
@@ -255,18 +268,42 @@ function App() {
       </section>
 
       <footer className="footer">
+        <div className="container footer-cta">
+          <div>
+            <p className="eyebrow">Pronto para escalar?</p>
+            <h2>Vamos multiplicar seus resultados?</h2>
+            <p>Receba um plano claro para transformar trafego, conteudo e site em uma maquina de crescimento.</p>
+          </div>
+          <a className="btn btn-primary" href="#contato">Solicitar proposta <span aria-hidden="true">→</span></a>
+        </div>
+
         <div className="container footer-grid">
-          <a className="brand" href="#hero" aria-label="ROAS - inicio">
-            <span className="brand-logo">RO<span>A</span>S</span>
-            <small>Agencia de marketing</small>
-          </a>
-          <p>Marketing digital, performance e sites de conversao para marcas em crescimento.</p>
-          <nav aria-label="Rodape">
-            <a href="#servicos">Servicos</a>
-            <a href="#resultados">Resultados</a>
-            <a href="#cases">Cases</a>
-            <a href="#contato">Contato</a>
-          </nav>
+          <div className="footer-brand">
+            <a className="brand" href="#hero" aria-label="ROAS - inicio">
+              <span className="brand-logo">RO<span>A</span>S</span>
+              <small>Agencia de marketing</small>
+            </a>
+            <p>Marketing digital, performance e sites de conversao para marcas que querem crescer com previsibilidade.</p>
+            <div className="footer-social" aria-label="Redes sociais">
+              <a href="#contato" aria-label="Instagram">IG</a>
+              <a href="#contato" aria-label="LinkedIn">IN</a>
+              <a href="#contato" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+
+          {footerColumns.map(([title, links]) => (
+            <nav className="footer-links" aria-label={title} key={title}>
+              <strong>{title}</strong>
+              {links.map(([label, href]) => (
+                <a href={href} key={label}>{label}</a>
+              ))}
+            </nav>
+          ))}
+        </div>
+
+        <div className="container footer-bottom">
+          <span>© 2026 Agencia ROAS. Todos os direitos reservados.</span>
+          <span>CNPJ: 06.476.540/0001-31</span>
         </div>
       </footer>
     </main>
