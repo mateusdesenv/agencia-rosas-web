@@ -1384,9 +1384,9 @@ a {
 }
 
 .hero-copy h1 {
-  max-width: 620px;
-  font-size: clamp(3.9rem, 5.8vw, 5.95rem);
-  line-height: 1.02;
+  max-width: 570px;
+  font-size: clamp(3.35rem, 4.65vw, 5rem);
+  line-height: 1.05;
 }
 
 .hero-copy h1 span {
@@ -1429,33 +1429,43 @@ a {
 }
 
 .floating-card {
+  width: 216px;
+  min-height: 96px;
+  padding: 16px 18px;
   background: rgba(7, 5, 18, 0.58);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
 }
 
+.floating-card strong {
+  font-size: 2.18rem;
+}
+
 .card-roas {
-  top: 18%;
+  top: 20%;
   right: 35%;
 }
 
 .card-leads {
-  top: 29%;
-  right: 10%;
+  top: 33%;
+  right: 8%;
 }
 
 .card-revenue {
-  top: 47%;
+  top: 58%;
   right: 20%;
+  width: 300px;
+  min-height: 118px;
 }
 
 .card-cpa {
   top: 46%;
-  right: 9%;
+  right: 8%;
 }
 
 .card-performance {
-  top: 64%;
+  top: 76%;
   right: 8%;
+  width: 250px;
 }
 
 @media (max-width: 1080px) {
