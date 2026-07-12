@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const services = [
@@ -56,6 +57,13 @@ const testimonials = [
   ['O site novo e os anuncios passaram a conversar. As conversoes subiram rapido.', 'Camila Rocha', 'Founder, Marea'],
 ]
 
+const navItems = [
+  ['Servicos', '#servicos'],
+  ['Resultados', '#resultados'],
+  ['Cases', '#cases'],
+  ['Contato', '#contato'],
+]
+
 function ServiceIcon({ src, title }) {
   return (
     <span className="service-icon" aria-hidden="true">
@@ -66,20 +74,46 @@ function ServiceIcon({ src, title }) {
 }
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const updateHeader = () => {
+      setIsScrolled(window.scrollY > 24)
+    }
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => window.removeEventListener('scroll', updateHeader)
+  }, [])
+
+  const closeMenu = () => setIsMenuOpen(false)
+
   return (
     <main className="site-shell">
-      <header className="topbar">
-        <a className="brand" href="#hero" aria-label="ROAS - inicio">
+      <header className={`topbar ${isScrolled ? 'is-scrolled' : ''} ${isMenuOpen ? 'is-menu-open' : ''}`}>
+        <a className="brand" href="#hero" aria-label="ROAS - inicio" onClick={closeMenu}>
           <span className="brand-logo">RO<span>A</span>S</span>
           <small>Agencia de marketing</small>
         </a>
-        <nav className="nav-links" aria-label="Principal">
-          <a href="#servicos">Servicos</a>
-          <a href="#resultados">Resultados</a>
-          <a href="#cases">Cases</a>
-          <a href="#contato">Contato</a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setIsMenuOpen((current) => !current)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav className="nav-links" id="main-navigation" aria-label="Principal">
+          {navItems.map(([label, href]) => (
+            <a href={href} onClick={closeMenu} key={href}>{label}</a>
+          ))}
         </nav>
-        <a className="topbar-cta" href="#contato">Solicitar Proposta</a>
+        <a className="topbar-cta" href="#contato" onClick={closeMenu}>Solicitar Proposta</a>
       </header>
 
       <section className="hero-section" id="hero">
