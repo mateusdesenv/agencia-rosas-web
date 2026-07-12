@@ -1,0 +1,265 @@
+import './App.css'
+
+const services = [
+  {
+    title: 'Trafego Pago',
+    text: 'Campanhas que geram visibilidade, leads e vendas com ROI previsivel.',
+    icon: '/assets/roas/icon-paid-traffic.png',
+    featured: true,
+  },
+  {
+    title: 'Social Media',
+    text: 'Gestao de redes sociais que cria autoridade e gera engajamento real.',
+    icon: '/assets/roas/icon-social-media.png',
+  },
+  {
+    title: 'Sites de Conversao',
+    text: 'Sites rapidos, estrategicos e focados em conversao de verdade.',
+    icon: '/assets/roas/icon-conversion-sites.png',
+  },
+  {
+    title: 'Automacao e CRM',
+    text: 'Automatize processos e aumente vendas com CRM e fluxos inteligentes.',
+    icon: '/assets/roas/icon-automation-crm.png',
+  },
+  {
+    title: 'Analytics & BI',
+    text: 'Dados que orientam decisoes e impulsionam resultados.',
+    icon: '/assets/roas/icon-analytics-bi.png',
+  },
+]
+
+const heroCards = [
+  ['ROAS Atual', '4.8x', '+12% vs mes anterior', 'card-roas'],
+  ['Leads Qualificados', '150k+', '+32% vs mes anterior', 'card-leads'],
+  ['Faturamento Gerado', 'R$ 12.000.000+', 'crescimento acumulado', 'card-revenue'],
+  ['CPA Reduzido', '-45%', 'vs mes anterior', 'card-cpa'],
+  ['Performance de Anuncios', '92%', 'Taxa de Conversao', 'card-performance'],
+]
+
+const metrics = [
+  ['12M+', 'Faturamento Gerado', 'para nossos clientes'],
+  ['R$ 4,80', 'ROAS Medio', 'para cada R$ 1 investido'],
+  ['150k+', 'Leads Qualificados', 'gerados todos os meses'],
+  ['45%', 'Reducao no CPA', 'media de reducao no custo'],
+]
+
+const cases = [
+  ['E-commerce', 'E-commerce Materiais Abrasivos', 'Escala de vendas com trafego pago e otimizacao de funil.', '+400%', 'de aumento no ROAS'],
+  ['Construcao', 'Construtora de Casas de Madeiras', 'Geracao de leads qualificados e nutricao automatizada.', '+320%', 'mais leads qualificados'],
+  ['Saude', 'Clinica Estetica', 'Aumento de agendamentos e reducao de custo por lead.', '+100%', 'aumento em conversoes'],
+]
+
+const testimonials = [
+  ['A estrategia deixou nossos numeros claros e as campanhas finalmente previsiveis.', 'Marina Costa', 'CEO, Studio Viva'],
+  ['A ROAS transformou trafego em processo comercial. O time ganhou ritmo.', 'Rafael Lima', 'Diretor, Prime Fit'],
+  ['O site novo e os anuncios passaram a conversar. As conversoes subiram rapido.', 'Camila Rocha', 'Founder, Marea'],
+]
+
+function ServiceIcon({ src, title }) {
+  return (
+    <span className="service-icon" aria-hidden="true">
+      <img src={src} alt="" width="78" height="78" loading="lazy" />
+      <span className="sr-only">{title}</span>
+    </span>
+  )
+}
+
+function App() {
+  return (
+    <main className="site-shell">
+      <header className="topbar">
+        <a className="brand" href="#hero" aria-label="ROAS - inicio">
+          <span className="brand-logo">RO<span>A</span>S</span>
+          <small>Agencia de marketing</small>
+        </a>
+        <nav className="nav-links" aria-label="Principal">
+          <a href="#servicos">Servicos</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#cases">Cases</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a className="topbar-cta" href="#contato">Solicitar Proposta</a>
+      </header>
+
+      <section className="hero-section" id="hero">
+        <div className="hero-bg" aria-hidden="true">
+          {heroCards.map(([label, value, note, className]) => (
+            <div className={`floating-card ${className}`} key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+              <small>{note}</small>
+            </div>
+          ))}
+        </div>
+
+        <div className="container hero-grid">
+          <div className="hero-copy reveal">
+            <p className="eyebrow">Performance para marcas que querem crescer</p>
+            <h1>
+              Mais <span>visibilidade.</span><br />
+              Mais <span>clientes.</span><br />
+              Mais <span>vendas.</span>
+            </h1>
+            <p className="hero-text">
+              Trafego pago, social media e sites de alta conversao para transformar cliques em crescimento real.
+            </p>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="#contato">Quero multiplicar meus resultados <span aria-hidden="true">→</span></a>
+              <a className="btn btn-secondary" href="#cases">Ver cases <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="proof">
+              <span className="avatar-stack" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
+              <p><strong>+50 empresas</strong> ja multiplicaram resultados com a ROAS</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="trusted-section">
+        <div className="container trusted-strip reveal">
+          <span>Empresas que confiam na ROAS</span>
+          <div className="logo-row" aria-label="Clientes">
+            <strong>GTI Fight Club</strong>
+            <strong>M&amp;M Beach Sports</strong>
+            <strong>LOGO</strong>
+            <strong>LOGO</strong>
+            <strong>LOGO</strong>
+            <strong>LOGO</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="services-section light-section" id="servicos">
+        <div className="container">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Solucoes integradas</p>
+            <h2>Solucoes que <span>multiplicam</span> resultados</h2>
+            <p>Estrategia completa para atrair, converter e reter clientes com performance previsivel.</p>
+          </div>
+          <div className="services-grid">
+            {services.map((service) => (
+              <article className={`service-card reveal ${service.featured ? 'is-featured' : ''}`} key={service.title}>
+                {service.featured ? <span className="badge">Mais escolhido</span> : null}
+                <ServiceIcon src={service.icon} title={service.title} />
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <a className="read-more" href="#contato">Saiba mais <span aria-hidden="true">→</span></a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="results-section dark-section" id="resultados">
+        <div className="container">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Numeros que importam</p>
+            <h2>Numeros que <span>falam por si</span></h2>
+            <p>Metricas organizadas para o time vender melhor, investir com clareza e escalar sem achismo.</p>
+          </div>
+          <div className="metrics-grid">
+            {metrics.map(([value, label, note]) => (
+              <article className="metric-card reveal" key={value}>
+                <strong>{value}</strong>
+                <b>{label}</b>
+                <span>{note}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cases-section light-section" id="cases">
+        <div className="container">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Cases de crescimento</p>
+            <h2>Transformamos investimento em crescimento</h2>
+          </div>
+          <div className="case-grid">
+            {cases.map(([tag, title, text, value, label]) => (
+              <article className="case-card reveal" key={tag}>
+                <span className="case-tag">{tag}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <div className="case-numbers">
+                  <span><small>Investimento</small>R$ 5.000/mes</span>
+                  <span><small>Resultado</small>R$ 22.000/mes</span>
+                </div>
+                <div className="mini-chart" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <strong>{value}</strong>
+                <p>{label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="testimonials-section dark-section">
+        <div className="container">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Depoimentos</p>
+            <h2>Depoimentos de quem ja transformou seu negocio com a ROAS</h2>
+          </div>
+          <div className="testimonial-grid">
+            {testimonials.map(([quote, name, role]) => (
+              <article className="testimonial-card reveal" key={name}>
+                <div className="stars" aria-label="5 estrelas">★★★★★</div>
+                <p>"{quote}"</p>
+                <strong>{name}</strong>
+                <span>{role}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="final-cta light-section" id="contato">
+        <div className="container cta-panel reveal">
+          <div>
+            <p className="eyebrow">Proxima fase</p>
+            <h2>Pronto para transformar trafego em crescimento?</h2>
+            <p>Vamos mapear suas oportunidades e montar uma rota simples para vender mais com previsibilidade.</p>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="https://wa.me/5500000000000" target="_blank" rel="noreferrer">
+                Falar no WhatsApp <span aria-hidden="true">→</span>
+              </a>
+              <a className="btn btn-dark" href="mailto:contato@roas.com.br">Solicitar Proposta <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div className="cta-visual" aria-hidden="true">
+            <div className="cta-funnel" />
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="container footer-grid">
+          <a className="brand" href="#hero" aria-label="ROAS - inicio">
+            <span className="brand-logo">RO<span>A</span>S</span>
+            <small>Agencia de marketing</small>
+          </a>
+          <p>Marketing digital, performance e sites de conversao para marcas em crescimento.</p>
+          <nav aria-label="Rodape">
+            <a href="#servicos">Servicos</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#cases">Cases</a>
+            <a href="#contato">Contato</a>
+          </nav>
+        </div>
+      </footer>
+    </main>
+  )
+}
+
+export default App
