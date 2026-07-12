@@ -1135,7 +1135,10 @@ a {
 }
 
 .metric-card strong {
-  font-size: clamp(2.7rem, 4.5vw, 4.25rem);
+  display: block;
+  font-size: clamp(2.55rem, 4vw, 3.85rem);
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .metric-card b {
@@ -1324,19 +1327,28 @@ a {
   font-weight: 900;
 }
 
-.footer-links {
+.footer .footer-links {
   display: grid;
+  grid-template-rows: auto 1fr;
   align-content: start;
-  gap: 12px;
+  justify-content: start;
+  justify-items: start;
+  gap: 14px;
+  text-align: left;
 }
 
-.footer-links strong {
-  margin-bottom: 6px;
+.footer .footer-links strong {
   color: var(--roas-white);
   font-size: 0.92rem;
 }
 
-.footer-links a {
+.footer .footer-link-list {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+
+.footer .footer-links a {
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.92rem;
   transition: color 180ms ease;

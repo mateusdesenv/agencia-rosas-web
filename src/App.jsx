@@ -294,9 +294,11 @@ function App() {
           {footerColumns.map(([title, links]) => (
             <nav className="footer-links" aria-label={title} key={title}>
               <strong>{title}</strong>
-              {links.map(([label, href]) => (
-                <a href={href} key={label}>{label}</a>
-              ))}
+              <div className="footer-link-list">
+                {links.map(([label, href]) => (
+                  <a href={href} key={label}>{label}</a>
+                ))}
+              </div>
             </nav>
           ))}
         </div>
