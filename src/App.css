@@ -130,7 +130,7 @@ a {
 .hero-section {
   position: relative;
   display: grid;
-  min-height: 780px;
+  min-height: 100svh;
   align-items: center;
   overflow: hidden;
   background:
@@ -158,6 +158,7 @@ a {
   z-index: 3;
   display: grid;
   grid-template-columns: minmax(0, 620px) 1fr;
+  min-height: 100svh;
   align-items: center;
   padding-top: 96px;
 }
@@ -855,7 +856,7 @@ a {
 }
 
 .hero-section {
-  min-height: 720px;
+  min-height: 100svh;
   background:
     linear-gradient(90deg, rgba(5, 5, 10, 0.94) 0%, rgba(5, 5, 10, 0.8) 31%, rgba(5, 5, 10, 0.1) 58%, rgba(5, 5, 10, 0) 100%),
     url("/assets/roas/hero-roas-bg.png") center / cover no-repeat,
@@ -869,7 +870,7 @@ a {
 
 .hero-grid {
   grid-template-columns: minmax(0, 480px) 1fr;
-  min-height: 720px;
+  min-height: 100svh;
   padding-top: 84px;
 }
 
@@ -890,7 +891,7 @@ a {
 }
 
 .proof {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 14px;
   margin-top: 26px;
@@ -1005,6 +1006,7 @@ a {
 }
 
 .trusted-section {
+  display: none;
   margin-top: -1px;
 }
 
@@ -1334,8 +1336,8 @@ a {
   }
 
   .hero-section {
-    min-height: auto;
-    padding: 142px 0 56px;
+    min-height: 100svh;
+    padding: 118px 0 34px;
     background:
       linear-gradient(180deg, rgba(5, 5, 10, 0.98), rgba(5, 5, 10, 0.76)),
       radial-gradient(circle at 68% 28%, rgba(255, 47, 174, 0.28), transparent 35%),

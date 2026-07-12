@@ -142,29 +142,6 @@ function App() {
               <a className="btn btn-primary" href="#contato">Quero multiplicar meus resultados <span aria-hidden="true">→</span></a>
               <a className="btn btn-secondary" href="#cases">Ver cases <span aria-hidden="true">→</span></a>
             </div>
-            <div className="proof">
-              <span className="avatar-stack" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-              </span>
-              <p><strong>+50 empresas</strong> ja multiplicaram resultados com a ROAS</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="trusted-section">
-        <div className="container trusted-strip reveal">
-          <span>Empresas que confiam na ROAS</span>
-          <div className="logo-row" aria-label="Clientes">
-            <strong>GTI Fight Club</strong>
-            <strong>M&amp;M Beach Sports</strong>
-            <strong>LOGO</strong>
-            <strong>LOGO</strong>
-            <strong>LOGO</strong>
-            <strong>LOGO</strong>
           </div>
         </div>
       </section>
