@@ -45,6 +45,145 @@ a {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 47, 174, 0.28), transparent 25%),
+    radial-gradient(circle at 64% 36%, rgba(139, 44, 255, 0.22), transparent 30%),
+    radial-gradient(circle at 34% 62%, rgba(255, 106, 42, 0.18), transparent 32%),
+    #05050a;
+  color: var(--roas-white);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity 620ms ease, visibility 620ms ease;
+}
+
+.page-loader::before,
+.page-loader::after {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(78vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.page-loader::before {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    conic-gradient(from 90deg, transparent 0 22%, rgba(255, 47, 174, 0.42), rgba(139, 44, 255, 0.34), transparent 58%),
+    radial-gradient(circle, transparent 56%, rgba(255, 255, 255, 0.08) 57%, transparent 58%);
+  filter: drop-shadow(0 0 54px rgba(255, 47, 174, 0.32));
+  animation: loader-spin 4.4s linear infinite;
+}
+
+.page-loader::after {
+  width: min(58vw, 380px);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  animation: loader-spin 8s linear infinite reverse;
+}
+
+.page-loader.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-orbit {
+  position: absolute;
+  width: min(62vw, 420px);
+  aspect-ratio: 1;
+  animation: loader-orbit 3.8s ease-in-out infinite;
+}
+
+.loader-orbit span {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: 0 0 26px rgba(255, 47, 174, 0.75);
+}
+
+.loader-orbit span:nth-child(1) {
+  top: 8%;
+  left: 50%;
+}
+
+.loader-orbit span:nth-child(2) {
+  right: 14%;
+  bottom: 26%;
+  animation-delay: -400ms;
+}
+
+.loader-orbit span:nth-child(3) {
+  bottom: 18%;
+  left: 18%;
+  animation-delay: -800ms;
+}
+
+.loader-core {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: min(72vw, 360px);
+  place-items: center;
+  align-content: center;
+  padding: 0 28px;
+  text-align: center;
+  text-shadow: 0 20px 64px rgba(0, 0, 0, 0.72), 0 0 34px rgba(255, 47, 174, 0.32);
+  animation: loader-core-pulse 1.45s ease-in-out infinite alternate;
+}
+
+.loader-core strong {
+  color: var(--roas-white);
+  font-size: clamp(3.2rem, 13vw, 6.8rem);
+  font-weight: 950;
+  line-height: 0.82;
+}
+
+.loader-core strong span {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loader-core small {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.86rem, 2vw, 1rem);
+  font-weight: 800;
+}
+
+.loader-progress {
+  position: absolute;
+  bottom: clamp(68px, 12vh, 118px);
+  left: 50%;
+  width: min(280px, calc(100% - 80px));
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+}
+
+.loader-progress span {
+  display: block;
+  width: 46%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gradient);
+  box-shadow: 0 0 24px rgba(255, 47, 174, 0.58);
+  animation: loader-progress 1.2s ease-in-out infinite;
+}
+
 .container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
@@ -742,6 +881,56 @@ a {
 @keyframes slow-spin {
   to {
     transform: rotate(1turn);
+  }
+}
+
+@keyframes loader-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@keyframes loader-orbit {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.86;
+  }
+  50% {
+    transform: rotate(16deg) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes loader-core-pulse {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 0.92;
+  }
+  to {
+    transform: translateY(-4px) scale(1.015);
+    opacity: 1;
+  }
+}
+
+@keyframes loader-progress {
+  0% {
+    transform: translateX(-110%);
+  }
+  50% {
+    transform: translateX(80%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+@keyframes mobile-menu-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -1591,24 +1780,26 @@ a {
     position: absolute;
     top: 8px;
     right: 8px;
+    z-index: 2;
   }
 
   .nav-links {
     display: none;
     grid-column: 1 / -1;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding-top: 8px;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 42px;
     overflow: visible;
   }
 
   .nav-links a {
-    min-height: 48px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 12px;
-    background: rgba(255, 255, 255, 0.06);
+    min-height: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0 18px;
+    background: rgba(255, 255, 255, 0.07);
     color: rgba(255, 255, 255, 0.88);
+    font-size: 1.08rem;
     white-space: normal;
   }
 
@@ -1621,12 +1812,48 @@ a {
     font-size: 0.9rem;
   }
 
+  .topbar.is-menu-open {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    max-width: none;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    align-content: start;
+    align-items: start;
+    border: 0;
+    border-radius: 0;
+    padding: 22px 20px calc(24px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(circle at 78% 12%, rgba(255, 47, 174, 0.22), transparent 28%),
+      radial-gradient(circle at 24% 88%, rgba(139, 44, 255, 0.2), transparent 32%),
+      rgba(5, 5, 10, 0.98);
+    box-shadow: none;
+    transform: translateX(0);
+    animation: mobile-menu-slide-in 260ms ease-out both;
+  }
+
+  .topbar.is-menu-open .brand {
+    align-self: start;
+  }
+
+  .topbar.is-menu-open .menu-toggle {
+    top: 18px;
+    right: 18px;
+  }
+
   .topbar.is-menu-open .nav-links {
-    display: grid;
+    display: flex;
+  }
+
+  .topbar.is-menu-open .nav-links a {
+    width: 100%;
   }
 
   .topbar.is-menu-open .topbar-cta {
     display: inline-flex;
+    min-height: 58px;
+    font-size: 1rem;
   }
 
   .hero-section {
@@ -1634,7 +1861,7 @@ a {
     padding: 118px 0 34px;
     background:
       linear-gradient(180deg, rgba(5, 5, 10, 0.99) 0%, rgba(5, 5, 10, 0.9) 58%, rgba(5, 5, 10, 0.8) 100%),
-      url("/assets/roas/hero-roas-bg-v2.png") 66% center / cover no-repeat,
+      url("/assets/roas/hero-roas-bg-v2.png") center / cover no-repeat,
       #05050a;
   }
 
@@ -1646,10 +1873,15 @@ a {
 
   .hero-copy {
     min-width: 0;
+    max-width: 540px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .hero-copy .eyebrow {
     max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
     font-size: 0.68rem;
     line-height: 1.45;
     white-space: normal;
@@ -1676,8 +1908,11 @@ a {
   }
 
   .hero-actions {
+    align-items: center;
     flex-direction: column;
     gap: 10px;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 24px;
     width: 100%;
     max-width: 100%;
@@ -1796,15 +2031,24 @@ a {
   .footer-cta {
     min-height: 0;
     grid-template-columns: 1fr;
+    justify-items: center;
     gap: 22px;
     padding: 28px 20px;
+    text-align: center;
     background:
       linear-gradient(180deg, rgba(8, 11, 22, 0.94), rgba(8, 11, 22, 0.78)),
       url("/assets/roas/footer-cta-strip-bg.png") center / cover no-repeat;
   }
 
   .footer-cta h2 {
+    margin-right: auto;
+    margin-left: auto;
     font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .footer-cta p:not(.eyebrow) {
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .footer-cta .btn {
@@ -1815,20 +2059,44 @@ a {
   .footer-grid {
     display: grid;
     grid-template-columns: 1fr;
+    justify-items: center;
     gap: 28px;
     padding: 38px 0 28px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    display: grid;
+    justify-items: center;
+  }
+
+  .footer-brand .brand {
+    align-items: center;
   }
 
   .footer-brand p {
     max-width: none;
   }
 
-  .footer-links {
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer .footer-links {
+    justify-content: center;
+    justify-items: center;
     gap: 10px;
+    text-align: center;
+  }
+
+  .footer .footer-link-list {
+    justify-items: center;
   }
 
   .footer-bottom {
+    align-items: center;
     flex-direction: column;
+    text-align: center;
   }
 }
 

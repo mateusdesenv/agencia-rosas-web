@@ -84,6 +84,7 @@ function ServiceIcon({ src, title }) {
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [loaderState, setLoaderState] = useState('visible')
 
   useEffect(() => {
     const updateHeader = () => {
@@ -95,10 +96,51 @@ function App() {
     return () => window.removeEventListener('scroll', updateHeader)
   }, [])
 
+  useEffect(() => {
+    let exitTimer
+    let removeTimer
+
+    const startExit = () => {
+      exitTimer = window.setTimeout(() => {
+        setLoaderState('leaving')
+        removeTimer = window.setTimeout(() => setLoaderState('hidden'), 700)
+      }, 1300)
+    }
+
+    if (document.readyState === 'complete') {
+      startExit()
+    } else {
+      window.addEventListener('load', startExit, { once: true })
+    }
+
+    return () => {
+      window.removeEventListener('load', startExit)
+      window.clearTimeout(exitTimer)
+      window.clearTimeout(removeTimer)
+    }
+  }, [])
+
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <main className="site-shell">
+      {loaderState !== 'hidden' ? (
+        <div className={`page-loader ${loaderState === 'leaving' ? 'is-leaving' : ''}`} aria-hidden="true">
+          <div className="loader-orbit">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="loader-core">
+            <strong>RO<span>A</span>S</strong>
+            <small>Agencia de performance</small>
+          </div>
+          <div className="loader-progress">
+            <span />
+          </div>
+        </div>
+      ) : null}
+
       <header className={`topbar ${isScrolled ? 'is-scrolled' : ''} ${isMenuOpen ? 'is-menu-open' : ''}`}>
         <a className="brand" href="#hero" aria-label="ROAS - inicio" onClick={closeMenu}>
           <span className="brand-logo">RO<span>A</span>S</span>
