@@ -1231,11 +1231,7 @@ a {
   }
 
   .topbar-cta {
-    max-width: 34%;
-    min-height: 42px;
-    padding: 0 8px;
-    font-size: 0.72rem;
-    white-space: nowrap;
+    display: none;
   }
 
   .hero-section {
@@ -1261,6 +1257,10 @@ a {
     word-break: break-word;
     font-size: clamp(2.35rem, 10vw, 3.2rem);
     line-height: 1;
+  }
+
+  .hero-copy h1 span {
+    display: block;
   }
 
   .hero-text {
